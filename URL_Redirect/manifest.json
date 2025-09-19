@@ -1,0 +1,42 @@
+{
+	//清单文件格式。官网参数说明: https://developer.chrome.com/docs/extensions/reference/manifest?hl=zh-cn
+
+	// 插件名字。一个字符串，用于在 Chrome 应用商店、安装对话框和用户的 Chrome 扩展程序页面 (chrome://extensions) 中标识扩展程序。长度上限为 75 个字符。如需了解如何使用特定于语言区域的名称，请参阅国际化。
+	"name": "URL Redirect",
+	// 插件描述。一个字符串，用于描述 Chrome 应用商店和用户扩展程序管理页面上的扩展程序。长度上限为 132 个字符。如需了解如何将说明本地化，请参阅国际化。
+	"description": "浏览器网络请求转发",
+	// 插件版本。用于标识扩展程序版本号的字符串。如需了解如何设置版本号的格式，请参阅版本。
+	"version": "1.0",
+	// // 一个描述扩展程序版本的字符串。例如 "1.0 beta" 和 "build rc2"。如果未指定，则“版本”值会显示在扩展程序管理页面上。
+	// "version_name": "1.0",
+	// 指定用于创建扩展程序的帐号的电子邮件地址。
+	"author": "datong",
+	// 清单版本。一个整数，用于指定扩展程序使用的清单文件格式版本。唯一支持的值是 3。
+	"manifest_version": 3,
+
+	"action": {
+	    // "default_popup": "hello.html",
+	    "default_icon": "Hi.png"
+	},
+	// 注入内容脚本。指定包含扩展程序 Service Worker 的 JavaScript 文件，该 Service Worker 充当事件处理脚本。如需了解详情，请参阅扩展程序 Service Worker 简介。
+	"background": {
+	    "service_worker": "service_worker.js"
+	},
+	// 权限。允许使用特定的扩展程序 API。如需了解一般说明，请参阅权限。各个 API 的参考页面列出了它们所需的权限。
+	"permissions": [
+		"cookies",
+		"webRequest",
+		// 重定向网址需要。在安装时触发权限警告，但提供对 allow、allowAllRequests 和 block 规则的隐式访问。请尽可能使用此方法，以免需要请求对主机的完整访问权限。
+		"declarativeNetRequest",
+		// 重定向网址需要.在安装时不会显示权限警告，但您必须先请求主机权限，然后才能对主机执行任何操作。如果您想在已具有主机权限的扩展程序中使用声明式网络请求规则，而不会产生额外的警告，这种方案很合适。
+		"declarativeNetRequestWithHostAccess",
+		// 为已解压的扩展程序启用调试功能，特别是 getMatchedRules() 和 onRuleMatchedDebug。
+		"declarativeNetRequestFeedback"
+	],
+	// 主机权限。 列出允许您的扩展程序与之互动的网页，使用网址匹配模式定义。系统会在安装应用时请求这些网站的用户权限。如需了解详情，请参阅主机权限。
+	"host_permissions": [
+		// "http://*/*",
+		// "https://*/*",
+		"<all_urls>"
+	]
+}
